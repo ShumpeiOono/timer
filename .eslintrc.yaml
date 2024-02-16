@@ -1,0 +1,56 @@
+env:
+  browser: true
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended-type-checked
+  - plugin:@typescript-eslint/stylistic-type-checked
+  - plugin:react/recommended
+  - plugin:react/jsx-runtime
+  - plugin:react-hooks/recommended
+  - plugin:import/recommended
+  - plugin:import/typescript
+  - prettier
+ignorePatterns:
+  - dist
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaVersion: latest
+  project:
+    - ./tsconfig.json
+    - ./tsconfig.node.json
+plugins:
+  - react-refresh
+root: true
+rules:
+  "@typescript-eslint/no-unused-vars":
+    - error
+    - args: after-used
+      argsIgnorePattern: ^_
+  import/order:
+    - warn
+    - alphabetize:
+        order: asc
+      newlines-between: always
+  react/jsx-no-leaked-render:
+    - error
+    - validStrategies:
+        - coerce
+        - ternary
+  react/jsx-no-useless-fragment: warn
+  react/no-array-index-key: error
+  react/no-unknown-property:
+    - error
+    - ignore:
+        - css
+  react-refresh/only-export-components:
+    - warn
+    - allowConstantExport: true
+  sort-imports:
+    - warn
+    - ignoreDeclarationSort: true
+settings:
+  import/resolver:
+    node: true
+    typescript: true
+  react:
+    version: detect
